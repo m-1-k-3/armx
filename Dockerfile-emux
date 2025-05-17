@@ -5,7 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-# EMUX (formerly ARMX) by Saumil Shah
+# EMUX by Saumil Shah
 # https://emux.exploitlab.net/
 
 #FROM alpine:latest
@@ -88,6 +88,9 @@ COPY --chown=root files/home/r0/dircolors /root/.dircolors
 
 RUN chmod 600 /home/r0/.ssh/id_rsa /home/r0/.ssh/config
 RUN chmod 600 /root/.ssh/id_rsa
+# making the users command non executable to make
+# autocomplete smoother when typing "userspace"
+RUN chmod 600 /usr/bin/users
 
 # Set up the docker entrypoint script
 COPY ./docker-entrypoint.sh /usr/local/bin
